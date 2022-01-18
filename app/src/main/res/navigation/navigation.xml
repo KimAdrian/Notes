@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/notesHomeFragment">
+
+    <fragment
+        android:id="@+id/notesHomeFragment"
+        android:name="com.kimadrian.notes.ui.view.NotesHomeFragment"
+        android:label="fragment_notes_home"
+        tools:layout="@layout/fragment_notes_home" >
+        <action
+            android:id="@+id/action_notesHomeFragment_to_newNoteFragment"
+            app:destination="@id/newNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newNoteFragment"
+        android:name="com.kimadrian.notes.ui.view.NewNoteFragment"
+        android:label="fragment_new_note"
+        tools:layout="@layout/fragment_new_note" />
+</navigation>
