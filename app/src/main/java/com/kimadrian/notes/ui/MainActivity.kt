@@ -14,9 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.addNewNoteFab.setOnClickListener {
-            findNavController(R.id.myNavHostFragment).navigate(R.id.action_notesHomeFragment_to_newNoteFragment)
-        }
+
 
     }
 
