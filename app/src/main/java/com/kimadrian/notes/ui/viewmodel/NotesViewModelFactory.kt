@@ -6,7 +6,7 @@ import com.kimadrian.notes.data.repository.NoteRepository
 import java.lang.IllegalArgumentException
 
 @Suppress("unchecked_cast")
-class NotesViewModelFactory(private val noteRepository: NoteRepository): ViewModelProvider.Factory {
+class NotesViewModelFactory(private val noteRepository: NoteRepository): ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(NotesViewModel::class.java)) {
             return NotesViewModel(noteRepository) as T

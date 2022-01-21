@@ -8,7 +8,7 @@ import com.kimadrian.notes.data.model.Note
 interface NoteDatabaseDao {
     //Insert a new note
     @Insert
-    suspend fun insertNewNote(note: Note)
+    suspend fun insertNote(note: Note)
 
     //Update existing note
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -18,7 +18,7 @@ interface NoteDatabaseDao {
     @Delete
     suspend fun deleteNote(note: Note)
 
-    //Fetch all notes into list ordered in desceding order
+    //Fetch all notes into list ordered in descending order
     @Query("SELECT * FROM notes_table ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Note>>
 }
