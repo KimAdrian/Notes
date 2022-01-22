@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.kimadrian.notes.databinding.FragmentNotesHomeBinding
 import com.kimadrian.notes.ui.adapter.NotesRecyclerViewAdapter
 import com.kimadrian.notes.ui.viewmodel.NotesViewModel
 import com.kimadrian.notes.ui.viewmodel.NotesViewModelFactory
+import timber.log.Timber
 
 class NotesHomeFragment : Fragment() {
 
@@ -33,18 +35,14 @@ class NotesHomeFragment : Fragment() {
         binding = FragmentNotesHomeBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory)[NotesViewModel::class.java]
 
-        val noteList = arrayListOf<Note>()
-
+        val adapter = NotesRecyclerViewAdapter()
         viewModel.getAllNotes.observe(viewLifecycleOwner, {
-            for (i in it.indices){
-                noteList.add(it[i])
-            }
+            adapter.submitList(it)
         })
+        Timber.d("${adapter.currentList.size}")
 
-        val adapter = NotesRecyclerViewAdapter(noteList, requireActivity())
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         binding.recyclerView.adapter = adapter
-
 
         binding.addNewNoteFab.setOnClickListener {
             findNavController().navigate(R.id.action_notesHomeFragment_to_newNoteFragment)
@@ -55,6 +53,7 @@ class NotesHomeFragment : Fragment() {
 
 
     }
+
 
 }
 

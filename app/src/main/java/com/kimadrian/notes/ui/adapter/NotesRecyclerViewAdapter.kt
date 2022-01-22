@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kimadrian.notes.R
 import com.kimadrian.notes.data.model.Note
+import com.kimadrian.notes.utils.NotesDiffUtil
 
-class NotesRecyclerViewAdapter(private val noteList: List<Note>, private val context: Context): RecyclerView.Adapter<NoteRecyclerViewHolder>() {
+class NotesRecyclerViewAdapter: ListAdapter<Note , NoteRecyclerViewHolder>(NotesDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteRecyclerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.note_recycler_item, parent, false)
 
@@ -18,7 +20,7 @@ class NotesRecyclerViewAdapter(private val noteList: List<Note>, private val con
     }
 
     override fun onBindViewHolder(holder: NoteRecyclerViewHolder, position: Int) {
-        val note = noteList[position]
+        val note = getItem(position)
 
         holder.title.text = note.title
         holder.description.text = note.description
@@ -27,8 +29,6 @@ class NotesRecyclerViewAdapter(private val noteList: List<Note>, private val con
             //TODO: Implement nav args
         }
     }
-
-    override fun getItemCount(): Int = noteList.size
 
 
 }

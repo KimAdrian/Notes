@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.kimadrian.notes.R
 import com.kimadrian.notes.data.model.Note
 import com.kimadrian.notes.data.repository.NoteRepository
@@ -52,6 +53,7 @@ class NewNoteFragment : Fragment() {
 
                     viewModel.saveNote(Note(0, title, description))
                     Toast.makeText(activity, "Note saved", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_newNoteFragment_to_notesHomeFragment)
                 }
             }
         }

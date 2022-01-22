@@ -22,5 +22,9 @@
         android:id="@+id/newNoteFragment"
         android:name="com.kimadrian.notes.ui.view.NewNoteFragment"
         android:label="fragment_new_note"
-        tools:layout="@layout/fragment_new_note" />
+        tools:layout="@layout/fragment_new_note" >
+        <action
+            android:id="@+id/action_newNoteFragment_to_notesHomeFragment"
+            app:destination="@id/notesHomeFragment" />
+    </fragment>
 </navigation>
