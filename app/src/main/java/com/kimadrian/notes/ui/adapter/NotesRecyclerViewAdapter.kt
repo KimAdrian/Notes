@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kimadrian.notes.R
 import com.kimadrian.notes.data.model.Note
+import com.kimadrian.notes.ui.view.NotesHomeFragmentDirections
 import com.kimadrian.notes.utils.NotesDiffUtil
 
 class NotesRecyclerViewAdapter: ListAdapter<Note , NoteRecyclerViewHolder>(NotesDiffUtil()) {
@@ -24,9 +27,12 @@ class NotesRecyclerViewAdapter: ListAdapter<Note , NoteRecyclerViewHolder>(Notes
 
         holder.title.text = note.title
         holder.description.text = note.description
+        holder.parentCard.setBackgroundColor(note.color)
 
         holder.itemView.setOnClickListener {
-            //TODO: Implement nav args
+            Navigation.findNavController(it)
+                .navigate(NotesHomeFragmentDirections
+                    .actionNotesHomeFragmentToEditNoteFragment(note.id, note.title, note.description, note.color))
         }
     }
 
@@ -36,4 +42,5 @@ class NotesRecyclerViewAdapter: ListAdapter<Note , NoteRecyclerViewHolder>(Notes
 class NoteRecyclerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val title: TextView = itemView.findViewById(R.id.noteTitle)
     val description: TextView = itemView.findViewById(R.id.noteDescription)
+    val parentCard: CardView = itemView.findViewById(R.id.parentCard)
 }

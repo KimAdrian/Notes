@@ -17,6 +17,9 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_notesHomeFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
     </fragment>
     <fragment
         android:id="@+id/newNoteFragment"
@@ -25,6 +28,26 @@
         tools:layout="@layout/fragment_new_note" >
         <action
             android:id="@+id/action_newNoteFragment_to_notesHomeFragment"
+            app:destination="@id/notesHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.kimadrian.notes.ui.view.EditNoteFragment"
+        android:label="EditNoteFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="color"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editNoteFragment_to_notesHomeFragment"
             app:destination="@id/notesHomeFragment" />
     </fragment>
 </navigation>

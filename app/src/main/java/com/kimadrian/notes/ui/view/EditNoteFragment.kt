@@ -13,16 +13,16 @@ import com.kimadrian.notes.R
 import com.kimadrian.notes.data.model.Note
 import com.kimadrian.notes.data.repository.NoteRepository
 import com.kimadrian.notes.data.repository.room.NoteDatabase
-import com.kimadrian.notes.databinding.FragmentNewNoteBinding
+import com.kimadrian.notes.databinding.FragmentEditNoteBinding
 import com.kimadrian.notes.ui.viewmodel.NotesViewModel
 import com.kimadrian.notes.ui.viewmodel.NotesViewModelFactory
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import timber.log.Timber
 
-class NewNoteFragment : Fragment() {
+class EditNoteFragment : Fragment() {
 
-    private lateinit var binding: FragmentNewNoteBinding
+    private lateinit var binding: FragmentEditNoteBinding
     private lateinit var viewModel: NotesViewModel
 
     override fun onCreateView(
@@ -33,9 +33,24 @@ class NewNoteFragment : Fragment() {
         val noteRepository = NoteRepository(noteDatabase)
         val viewModelFactory = NotesViewModelFactory(noteRepository)
         var color = Color.WHITE
+        var id: Int = -1
         // Inflate the layout for this fragment
-        binding = FragmentNewNoteBinding.inflate(inflater, container, false)
+        binding = FragmentEditNoteBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory)[NotesViewModel::class.java]
+
+
+
+        //Receive data from recyclerView
+        arguments.let {
+            val args = EditNoteFragmentArgs.fromBundle(it!!)
+            viewModel.getAllNotes.observe(viewLifecycleOwner, {
+                binding.titleInput.setText(args.title)
+                binding.descriptionInput.setText(args.description)
+                binding.parent.setBackgroundColor(args.color)
+                color = args.color
+                id = args.id
+            })
+        }
 
         //customize color
         binding.customizeColor.setOnClickListener {
@@ -54,7 +69,7 @@ class NewNoteFragment : Fragment() {
                 }.show()
         }
 
-        binding.addNewNoteFab.setOnClickListener {
+        binding.updateNoteFab.setOnClickListener {
             val title = binding.titleInput.text.toString()
             val description = binding.descriptionInput.text.toString()
 
@@ -65,14 +80,25 @@ class NewNoteFragment : Fragment() {
                 description.isEmpty() -> {
                     binding.descriptionInput.error = "Field cannot be empty"
                 }
-                //save note
+                //Update existing note
                 else -> {
-                    viewModel.saveNote(Note(0, title, description, color))
-                    Toast.makeText(activity, "Note saved", Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.action_newNoteFragment_to_notesHomeFragment)
+                    viewModel.updateNote(Note(id, title, description, color))
+                    Toast.makeText(activity, "Note updated", Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_editNoteFragment_to_notesHomeFragment)
                 }
             }
         }
+
+        binding.deleteNoteFab.setOnClickListener {
+            val title = binding.titleInput.text.toString()
+            val description = binding.descriptionInput.text.toString()
+
+            viewModel.deleteNote(Note(id, title, description, color))
+            Toast.makeText(activity, "Note deleted", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_editNoteFragment_to_notesHomeFragment)
+        }
+
+
 
         return binding.root
     }
