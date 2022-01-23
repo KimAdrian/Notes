@@ -19,7 +19,11 @@
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_notesHomeFragment_to_editNoteFragment"
-            app:destination="@id/editNoteFragment" />
+            app:destination="@id/editNoteFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/newNoteFragment"
@@ -28,7 +32,11 @@
         tools:layout="@layout/fragment_new_note" >
         <action
             android:id="@+id/action_newNoteFragment_to_notesHomeFragment"
-            app:destination="@id/notesHomeFragment" />
+            app:destination="@id/notesHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/editNoteFragment"
@@ -48,6 +56,10 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_editNoteFragment_to_notesHomeFragment"
-            app:destination="@id/notesHomeFragment" />
+            app:destination="@id/notesHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"  />
     </fragment>
 </navigation>
