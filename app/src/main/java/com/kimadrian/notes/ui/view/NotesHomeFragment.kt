@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,11 +49,19 @@ class NotesHomeFragment : Fragment() {
             findNavController().navigate(R.id.action_notesHomeFragment_to_newNoteFragment)
         }
 
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+            }
+        })
+
 
         return binding.root
 
 
     }
+
+
 
 
 }

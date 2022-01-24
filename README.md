@@ -1,3 +1,6 @@
+<p align="center">
+<img src="images/icons_notes.png"/>
+</p>
 ## Notes
 
 A customizable android notes app built using MVVM architecture pattern 
