@@ -5,15 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kimadrian.notes.R
-import com.kimadrian.notes.data.model.Note
 import com.kimadrian.notes.data.repository.NoteRepository
-import com.kimadrian.notes.data.repository.room.NoteDatabase
+import com.kimadrian.notes.data.database.NoteDatabase
 import com.kimadrian.notes.databinding.FragmentNotesHomeBinding
 import com.kimadrian.notes.ui.adapter.NotesRecyclerViewAdapter
 import com.kimadrian.notes.ui.viewmodel.NotesViewModel
@@ -37,9 +35,9 @@ class NotesHomeFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[NotesViewModel::class.java]
 
         val adapter = NotesRecyclerViewAdapter()
-        viewModel.getAllNotes.observe(viewLifecycleOwner, {
+        viewModel.getAllNotes.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
         Timber.d("${adapter.currentList.size}")
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)

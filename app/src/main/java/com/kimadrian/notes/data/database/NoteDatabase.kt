@@ -1,4 +1,4 @@
-package com.kimadrian.notes.data.repository.room
+package com.kimadrian.notes.data.database
 
 import android.content.Context
 import androidx.room.Database

@@ -1,7 +1,7 @@
 package com.kimadrian.notes.data.repository
 
 import com.kimadrian.notes.data.model.Note
-import com.kimadrian.notes.data.repository.room.NoteDatabase
+import com.kimadrian.notes.data.database.NoteDatabase
 
 class NoteRepository(private val noteDatabase: NoteDatabase) {
 

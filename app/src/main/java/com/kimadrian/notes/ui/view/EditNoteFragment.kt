@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.kimadrian.notes.R
 import com.kimadrian.notes.data.model.Note
 import com.kimadrian.notes.data.repository.NoteRepository
-import com.kimadrian.notes.data.repository.room.NoteDatabase
+import com.kimadrian.notes.data.database.NoteDatabase
 import com.kimadrian.notes.databinding.FragmentEditNoteBinding
 import com.kimadrian.notes.ui.viewmodel.NotesViewModel
 import com.kimadrian.notes.ui.viewmodel.NotesViewModelFactory

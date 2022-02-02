@@ -1,4 +1,4 @@
-package com.kimadrian.notes.data.repository.room
+package com.kimadrian.notes.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

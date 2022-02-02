@@ -1,10 +1,13 @@
 package com.kimadrian.notes.ui.view
 
+import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -13,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.kimadrian.notes.R
 import com.kimadrian.notes.data.model.Note
 import com.kimadrian.notes.data.repository.NoteRepository
-import com.kimadrian.notes.data.repository.room.NoteDatabase
+import com.kimadrian.notes.data.database.NoteDatabase
 import com.kimadrian.notes.databinding.FragmentNewNoteBinding
 import com.kimadrian.notes.ui.viewmodel.NotesViewModel
 import com.kimadrian.notes.ui.viewmodel.NotesViewModelFactory
